@@ -8,7 +8,7 @@ app.use(cors())
 
  mongoose
     .connect(process.env.DB,{ //DB를 읽어오란 뜻
-        userNewUrlParser : true,
+        useNewUrlParser : true,
         useUnifiedTopology: true,
 
     }).then(()=>console.log("connected to database"));

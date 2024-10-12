@@ -1,4 +1,4 @@
-const moongoose = requre("mongoose");
+const mongoose = requre("mongoose");
 
 const userSchema =new mongoose.Schema({
     name:{
@@ -18,4 +18,3 @@ const userSchema =new mongoose.Schema({
 });
 module.exprots=mongoose.model("User",userSchema);
 
-4

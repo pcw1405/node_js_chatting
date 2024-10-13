@@ -7,7 +7,7 @@ const chatSchema = new mongoose.Schema(
           id: {
             type: mongoose.Schema.ObjectId,
             ref: "User",
-            },
+          },
             name: String,
         },
 

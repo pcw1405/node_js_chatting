@@ -1,4 +1,4 @@
-const mongoose = requre("mongoose");
+const mongoose = require("mongoose");
 
 const userSchema =new mongoose.Schema({
     name:{
@@ -16,5 +16,5 @@ const userSchema =new mongoose.Schema({
         // 나중에 추가 기능
     },
 });
-module.exprots=mongoose.model("User",userSchema);
+module.exports=mongoose.model("User",userSchema);
 

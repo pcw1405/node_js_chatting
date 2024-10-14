@@ -14,3 +14,10 @@ require("./utils/io")(io);
 httpServer.listen(process.env.PORT,()=>{
     console.log("server listening on port",process.env.PORT);
 });
+
+// 
+// const mongoose = require('mongoose');
+// mongoose.connect('mongodb://127.0.0.1:27017/kakao-talk', { useNewUrlParser: true, useUnifiedTopology: true })
+//     .then(() => console.log('MongoDB 연결 성공'))
+//     .catch(err => console.error('MongoDB 연결 실패:', err));
+

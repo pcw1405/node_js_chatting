@@ -1,10 +1,20 @@
+const userController=require("../Controllers/user.controller")
+
 module.exports=function(io){
 
     io.on("connection",async(socket)=>{
         console.log("client is connected",socket.id);
 
         socket.on("login",async(userName,cb)=>{
-            console.log("backend",userName);
+            // console.log("backend",userName);
+
+            try{
+                const user =await userController.saverUser(userName,socket.id);
+                cb({ok:true,data:user})
+            }catch(error){
+                cb({ok:false,error:error.message})
+            }
+            
         })
 
         socket.on("disconnect", ()=>{

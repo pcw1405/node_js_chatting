@@ -10,6 +10,9 @@ function App() {
   const [user,setUser] =useState(null);
   const [message,setMessage] =useState('')
   useEffect(()=>{
+    socket.on('message',(res)=>{
+      console.log("res",message);
+    })
     askUserName();
   }, []);
   const askUserName = () =>{
@@ -28,7 +31,7 @@ function App() {
   const sendMessage= (event) => {
     event.preventDefault()
     socket.emit("sendMessage",message,(res) =>{
-      console.log
+      console.log(res);
     });
   };
   return (

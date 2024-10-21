@@ -1,3 +1,4 @@
+const chatController = require("../Controllers/chat.controller");
 const userController=require("../Controllers/user.controller")
 
 module.exports=function(io){
@@ -16,6 +17,23 @@ module.exports=function(io){
             }
             
         })
+
+        socket.on("sendMessage", async(message,cb)=>{
+            // console.log("");
+            try{
+                const user =await userController.checkUser(socket.id)
+                // 유저찾기 socket id로 
+                const newMessage=await chatController.saveChat(message.user);
+                //메시지저장 (유저)
+                // cb({ok:true,data:newMessage})
+                io.emit("message",newMessage)
+                cb({ok:true})
+
+            }catch(error){
+                cb({ok:false,error:error.message})
+            }
+            
+        });
 
         socket.on("disconnect", ()=>{
             console.log("user is disconnectd");

@@ -8,10 +8,10 @@ import InputField from"./components/InputField/InputField";
 
 function App() {
   const [user,setUser] =useState(null);
-  const [message,setMessage] =useState('')
+  const [message,setMessage] =useState("");
   useEffect(()=>{
     socket.on('message',(res)=>{
-      console.log("res",message);
+      console.log("res",message,res);
     })
     askUserName();
   }, []);
@@ -31,7 +31,7 @@ function App() {
   const sendMessage= (event) => {
     event.preventDefault()
     socket.emit("sendMessage",message,(res) =>{
-      console.log(res);
+      console.log("sendMessage res",message);
     });
   };
   return (

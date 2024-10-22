@@ -1,7 +1,7 @@
 const User = require("../Models/user")
 const userController = {}
 
-userController.saverUser=async(userName,sid)=>{
+userController.saveUser=async(userName,sid)=>{
     // 이미 있는 유저인지 확인 
     let user = await User.findOne({name:userName})
     //없다면 새로 유저정보 만들기 

@@ -10,7 +10,7 @@ module.exports=function(io){
             // console.log("backend",userName);
 
             try{
-                const user =await userController.saverUser(userName,socket.id);
+                const user =await userController.saveUser(userName,socket.id);
                 cb({ok:true,data:user})
             }catch(error){
                 cb({ok:false,error:error.message})
@@ -23,7 +23,7 @@ module.exports=function(io){
             try{
                 const user =await userController.checkUser(socket.id)
                 // 유저찾기 socket id로 
-                const newMessage=await chatController.saveChat(message.user);
+                const newMessage=await chatController.saveChat(message,user);
                 //메시지저장 (유저)
                 // cb({ok:true,data:newMessage})
                 io.emit("message",newMessage)

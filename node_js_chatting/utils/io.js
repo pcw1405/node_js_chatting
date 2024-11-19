@@ -11,6 +11,11 @@ module.exports=function(io){
 
             try{
                 const user =await userController.saveUser(userName,socket.id);
+                const welcomeMessage = {
+                    chat: `${user.name} is joined the room`,
+                    user: {id:null,name: "system"},
+                };
+                io.emit("message",welcomeMessage);
                 cb({ok:true,data:user})
             }catch(error){
                 cb({ok:false,error:error.message})

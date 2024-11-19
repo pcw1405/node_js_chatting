@@ -3,16 +3,20 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import socket from "./server";
 import InputField from"./components/InputField/InputField";
+import MessageContainer from "./components/MessageContainer/MessageContainer";
 
 // import { useSelect } from "@mui/base";
 
 function App() {
   const [user,setUser] =useState(null);
   const [message,setMessage] =useState("");
+  const [messageList,setMessageList]=useState([]);
+  console.log("message List",messageList);
   useEffect(()=>{
-    socket.on('message',(res)=>{
-      console.log("res",message,res);
-    })
+    socket.on('message',(message)=>{
+      // console.log("res",message,res);
+      setMessageList((prevState)=>prevState.concat(message));
+    });
     askUserName();
   }, []);
   const askUserName = () =>{
@@ -37,7 +41,7 @@ function App() {
   return (
     <div>
       <div className="App">
-
+        <MessageContainer messageList={messageList} user={user} />
         <InputField 
           message={message} 
           setMessage={setMessage} 
